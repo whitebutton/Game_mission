@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int soundID;//音频资源ID
     private ImageView set;
 
+    private UserBean userBean;//用户
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +58,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initSound();
         initSetting();
         animStart();
+        initUser();
+    }
+
+    private void initUser() {
+        if (!AllCtl.currType.getBoolean("is",false)){
+            httpUtil.httpPost("addUser",new Handler(){
+                @Override
+                public void handleMessage(Message msg) {
+                    super.handleMessage(msg);
+                    CodeBean code = (CodeBean) msg.obj;
+                    if (code.getCode()==200){
+                        httpUtil.httpPost("endUser",new Handler(){
+                            @Override
+                            public void handleMessage(Message msg) {
+                                super.handleMessage(msg);
+                                userBean = (UserBean) msg.obj;
+                                AllCtl.currTypeeditor.putBoolean("is",true);
+                                AllCtl.currTypeeditor.putString("user",userBean.getData().getUserName()+""+userBean.getData().getId());
+                                AllCtl.currTypeeditor.commit();
+                            }
+                        },UserBean.class);
+                    }
+                }
+            },CodeBean.class);
+        } else {
+            Log.i("TAGG", "initUser: "+AllCtl.currType.getString("user",""));
+        }
     }
 
     private void initView() {

@@ -81,7 +81,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                     .setRewardAmount(1)  //奖励的数量
                     //模板广告需要设置期望个性化模板广告的大小,单位dp,激励视频场景，只要设置的值大于0即可
                     .setExpressViewAcceptedSize(500,500)
-                    .setUserID("user123")//用户id,必传参数
+                    .setUserID(AllCtl.currType.getString("user","user110"))//用户id,必传参数
                     .setMediaExtra("media_extra") //附加参数，可选
                     .setOrientation(orientation) //必填参数，期望视频的播放方向：TTAdConstant.HORIZONTAL 或 TTAdConstant.VERTICAL
                     .build();
@@ -92,7 +92,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                     .setSupportDeepLink(true)
                     .setRewardName("解锁题库") //奖励的名称
                     .setRewardAmount(1)  //奖励的数量
-                    .setUserID("user123")//用户id,必传参数
+                    .setUserID(AllCtl.currType.getString("user","user110"))//用户id,必传参数
                     .setMediaExtra("media_extra") //附加参数，可选
                     .setOrientation(orientation) //必填参数，期望视频的播放方向：TTAdConstant.HORIZONTAL 或 TTAdConstant.VERTICAL
                     .build();

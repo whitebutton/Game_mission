@@ -20,7 +20,7 @@ import org.json.JSONObject;
 
 public class HttpUtil {
     private String string1 = "http://39.108.107.134:8089/interface/truthAndAdv/";
-    private String string2 = "";
+    private String string2 = "http://39.108.107.134:8089/interface/user/";
     private Context context;
     private RequestQueue requestQueue;
     private ImageRequest imageRequest;
@@ -32,6 +32,29 @@ public class HttpUtil {
 
     public void httpPost(String url, JSONObject jsonObject, final Handler handler, final Class clazz) {
         String strurl = string1 + url;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,strurl, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+//                if (jsonObject.optString("RESULT").equals("S")){
+                Message message = new Message();
+                message.obj = new Gson().fromJson(jsonObject.toString(), clazz);
+                handler.sendMessage(message);
+                Log.i("asd", "onResponse: 成功" );
+
+//                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.i("as", "onErrorResponse:失败 " + volleyError);
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    public void httpPost(String url, final Handler handler, final Class clazz) {
+        String strurl = string2 + url;
+        JSONObject jsonObject = new JSONObject();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,strurl, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
