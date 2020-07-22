@@ -86,12 +86,6 @@
                 android:layout_height="60dp"
                 android:layout_alignParentBottom="true"
                 android:src="@mipmap/mifeng" />
-            <ImageView
-                android:id="@+id/duihua"
-                android:layout_width="80dp"
-                android:layout_height="50dp"
-                android:scaleType="fitXY"
-                android:src="@mipmap/duihuakuang" />
             <TextView
                 android:layout_width="65dp"
                 android:layout_marginLeft="12dp"

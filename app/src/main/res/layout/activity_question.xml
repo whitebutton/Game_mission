@@ -123,7 +123,7 @@
 
         <RelativeLayout
             android:layout_width="110dp"
-            android:layout_height="120dp"
+            android:layout_height="110dp"
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
             android:layout_margin="10dp">
@@ -135,12 +135,6 @@
                 android:layout_alignParentBottom="true"
                 android:src="@mipmap/lu" />
 
-            <ImageView
-                android:id="@+id/duihua"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:scaleType="fitXY"
-                android:src="@mipmap/duihuakuang" />
 
             <TextView
                 android:layout_width="50dp"

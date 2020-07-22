@@ -107,7 +107,7 @@
     </LinearLayout>
     <RelativeLayout
         android:layout_width="110dp"
-        android:layout_height="120dp"
+        android:layout_height="110dp"
         android:layout_gravity="bottom"
         android:layout_margin="10dp"
         android:layout_alignParentBottom="true">
@@ -118,12 +118,6 @@
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"
             android:src="@mipmap/zhu" />
-        <ImageView
-            android:id="@+id/duihua"
-            android:layout_width="80dp"
-            android:layout_height="70dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/duihuakuang" />
         <TextView
             android:layout_width="60dp"
             android:gravity="center"
