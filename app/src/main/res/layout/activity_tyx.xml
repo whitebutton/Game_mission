@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#acb8be"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@drawable/back" />
+
+        <ImageView
+            android:id="@+id/touzi"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="5dp"
+            android:src="@drawable/touzi1" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="120dp"
+        android:layout_height="110dp"
+        android:layout_above="@+id/img1"
+        android:layout_alignParentRight="true">
+
+        <ImageView
+            android:id="@+id/animal2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:src="@mipmap/shulan" />
+
+        <ImageView
+            android:id="@+id/duihua2"
+            android:layout_width="82dp"
+            android:layout_height="65dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/duihuakuang2" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="13dp"
+            android:singleLine="false"
+            android:text="摇一摇有惊喜"
+            android:textColor="#efefef"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/img1"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="100dp">
+
+        <Button
+            android:id="@+id/bt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_tyx_bg"
+            android:text="开始"
+            android:textColor="#fff" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/animal"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:src="@mipmap/yang" />
+        <ImageView
+            android:id="@+id/duihua"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/duihuakuang" />
+        <TextView
+            android:layout_width="65dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="6dp"
+            android:textColor="#efefef"
+            android:singleLine="false"
+            android:text="点右上角可自定义"
+            android:textStyle="bold"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+</RelativeLayout>

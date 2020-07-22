@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/allbgGreen"
+    tools:context=".Random.BuiltInActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/back"
+            android:src="@drawable/back"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="内置题库"
+            android:textColor="#fff"
+            android:layout_gravity="center"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_width="0dp"
+            android:layout_weight="9"
+            android:layout_marginRight="40dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:background="@drawable/lh_linear_bg"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+            <TextView
+                android:id="@+id/TrueWords"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:textSize="15dp"
+                android:background="@drawable/text_bg"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:text="真心话"/>
+            <ListView
+                android:id="@+id/list1"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></ListView>
+            <TextView
+                android:id="@+id/adventure"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:textSize="15dp"
+                android:background="@drawable/text_bg"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:text="大冒险"/>
+            <ListView
+                android:id="@+id/list2"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></ListView>
+
+    </LinearLayout>
+
+</LinearLayout>

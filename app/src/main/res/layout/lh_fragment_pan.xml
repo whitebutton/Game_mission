@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/back"
+        android:src="@drawable/back"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <com.example.administrator.game_mission.More.lh.widget.Turntable
+        android:id="@+id/pan"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+    </com.example.administrator.game_mission.More.lh.widget.Turntable>
+
+    <ImageView
+        android:id="@+id/go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/node" />
+    <RelativeLayout
+        android:layout_width="110dp"
+        android:layout_height="120dp"
+        android:layout_gravity="bottom"
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/animal"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:src="@mipmap/dujiaoshou" />
+        <ImageView
+            android:id="@+id/duihua"
+            android:layout_width="100dp"
+            android:layout_height="66dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/duihuakuang" />
+        <TextView
+            android:layout_width="80dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="8dp"
+            android:textColor="#efefef"
+            android:singleLine="false"
+            android:text="大风车吱呀吱妞妞的转"
+            android:textStyle="bold"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+</RelativeLayout>

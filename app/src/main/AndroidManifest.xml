@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.administrator.game_mission">
+
+    <uses-sdk tools:overrideLibrary="android.support.v7.appcompat, android.support.v7.recyclerview,com.dingmouren.layoutmanagergroup,com.zyyoona7.lib,                                         com.squareup.leakcanary, com.squareup.leakcanary.analyzer, com.squareup.leakcanary.android.noop,com.mopub.mobileads.base,com.mopub.mobileads.rewarded_video,                                         com.mopub.mobileads.banner,com.mopub.mobileads.interstitial,com.moat.analytics.mobile.mpub,com.google.android.ads.mediationtestsuite" />
+
+    <!-- 必要权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- 可选权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <!-- suppress DeprecatedClassUsageInspection -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <!-- 如果有视频相关的广告且使用textureView播放，请务必添加，否则黑屏 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- 可选，穿山甲提供“获取地理位置权限”和“不给予地理位置权限，开发者传入地理位置参数”两种方式上报用户位置，两种方式均可不选，添加位置权限或参数将帮助投放定位广告 -->
+    <!-- 请注意：无论通过何种方式提供给穿山甲用户地理位置，均需向用户声明地理位置权限将应用于穿山甲广告投放，穿山甲不强制获取地理位置信息 -->
+    <uses-permission android:name="android.Manifest.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- demo场景用到的权限，不是必须的 -->
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:name=".Ad.DemoApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/icon_game"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/icon_game_round"
+        android:supportsRtl="true"
+
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <provider
+            android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
+            android:authorities="${applicationId}.TTFileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        <provider
+            android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"
+            android:authorities="${applicationId}.TTMultiProvider"
+            android:exported="false" />
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".More.MoreActivity" />
+        <activity android:name=".Random.RandomActivity" />
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".More.lh.LHActivity" />
+        <activity android:name=".More.lhy.LHYActivity" />
+        <activity android:name=".More.tyx.TYXActivity" />
+        <activity android:name=".More.zwn.ZWNActivity" />
+        <activity android:name=".Random.QuestionActivity" />
+        <activity android:name=".Random.BuiltInActivity" />
+        <activity android:name=".Random.DetailActivity" />
+        <activity android:name=".Random.Detail2Activity" />
+        <activity android:name=".Random.CustomActivity" />
+        <activity android:name=".More.lh.ResultActivity" />
+        <activity android:name=".More.zwn.Zwn2Activity" />
+        <activity android:name=".Ad.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

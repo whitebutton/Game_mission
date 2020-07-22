@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Game_mission</string>
+    <string-array name="name">
+        <item>真心话</item>
+        <item>大冒险</item>
+    </string-array>
+    <string-array name="level">
+        <item>一级</item>
+        <item>二级</item>
+        <item>三级</item>
+        <item>四级</item>
+        <item>五级</item>
+    </string-array>
+    <string-array name="probablity">
+        <item>原始</item>
+        <item>0%</item>
+        <item>10%</item>
+        <item>30%</item>
+        <item>50%</item>
+        <item>70%%</item>
+    </string-array>
+</resources>

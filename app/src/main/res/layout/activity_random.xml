@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/allbgGreen"
+    android:orientation="vertical"
+    tools:context=".Random.RandomActivity">
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:src="@drawable/back" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/startGame"
+                android:layout_width="wrap_content"
+                android:text="选择类型，点击开始"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:layout_marginBottom="30dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_main_bg"
+                android:text="真心话"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_main_bg"
+                android:text="大冒险"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_marginBottom="10dp"
+                android:id="@+id/button3"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:background="@drawable/button_main_bg"
+                android:text="混合"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <FrameLayout
+                android:layout_marginTop="70dp"
+                android:id="@+id/express_container"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_gravity="bottom"
+            android:layout_margin="10dp"
+            android:layout_alignParentBottom="true">
+
+            <ImageView
+                android:id="@+id/animal"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentBottom="true"
+                android:src="@mipmap/xiong" />
+            <ImageView
+                android:id="@+id/duihua"
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/duihuakuang" />
+            <TextView
+                android:layout_width="65dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:textColor="#efefef"
+                android:singleLine="false"
+                android:text="你瞅啥！"
+                android:textStyle="bold"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+    </FrameLayout>
+
+
+</LinearLayout>

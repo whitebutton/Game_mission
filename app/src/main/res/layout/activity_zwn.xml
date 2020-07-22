@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".More.zwn.ZWNActivity"
+    android:background="@color/allbgGreen">
+
+    <ImageView
+        android:id="@+id/back"
+        android:src="@drawable/back"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="炸弹数："
+                android:textSize="28sp"/>
+
+            <ImageView
+                android:id="@+id/sub_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/subtract"/>
+
+            <TextView
+                android:id="@+id/num1_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:text="1"
+                android:textSize="32sp"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/add_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/add"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="箱子数："
+                android:textSize="28sp"/>
+
+            <ImageView
+                android:id="@+id/sub_img2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/subtract"/>
+
+            <TextView
+                android:id="@+id/num2_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:text="6"
+                android:textSize="32sp"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/add_img2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/add"/>
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:textColor="#fff"
+            android:background="@drawable/button_main_bg"
+            android:text="开始游戏"/>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="110dp"
+        android:layout_height="120dp"
+        android:layout_gravity="bottom"
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/animal"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:src="@mipmap/zhu" />
+        <ImageView
+            android:id="@+id/duihua"
+            android:layout_width="80dp"
+            android:layout_height="70dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/duihuakuang" />
+        <TextView
+            android:layout_width="60dp"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="#efefef"
+            android:singleLine="false"
+            android:text="你会唱猪之歌吗"
+            android:textStyle="bold"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

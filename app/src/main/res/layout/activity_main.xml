@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#9cdebf"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/set"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="right"
+        android:layout_margin="10dp"
+        android:src="@mipmap/shezhi"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="50dp"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/currTopic"
+                android:layout_width="wrap_content"
+                android:text="当前题库：普通"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:layout_marginBottom="30dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/more"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/button_main_bg"
+                android:text="多人游戏"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/random"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/button_main_bg"
+                android:text="真心话大冒险"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/tiku"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:background="@drawable/button_main_bg"
+                android:text="选择题库"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            android:layout_margin="10dp"
+            android:src="@mipmap/tuzi" />
+    </FrameLayout>
+</LinearLayout>
