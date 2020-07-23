@@ -1,7 +1,9 @@
 package com.example.administrator.game_mission.More.zwn;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
@@ -34,6 +36,8 @@ public class Zwn2Activity extends AppCompatActivity {
     private AnimationDrawable drawable;
     private GridAdapter adapter = new GridAdapter();
     private Boolean onecStart=true;
+    private SoundPool soundPool;//音频通知声音播放器
+    private int soundID;//音频资源ID
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +48,7 @@ public class Zwn2Activity extends AppCompatActivity {
         Log.i("TAG", "onCreate: " + num1);
         initView();
         initData();
+        initSound();
     }
 
     private void initData() {
@@ -118,6 +123,14 @@ public class Zwn2Activity extends AppCompatActivity {
                                     startActivity(intent);
                                 }
                             },1000);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (AllCtl.sound){
+                                        playSound();
+                                    }
+                                }
+                            },800);
                             //震动
                             if (AllCtl.shock){
                                 Vibrator vibrator= (Vibrator) Zwn2Activity.this.getSystemService(VIBRATOR_SERVICE);
@@ -150,5 +163,24 @@ public class Zwn2Activity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         grid_zwn2.setAdapter(adapter);
         grid_anim.setVisibility(View.GONE);
+    }
+    //音频
+    @SuppressLint("NewApi")
+    private void initSound() {
+        soundPool = new SoundPool.Builder().build();
+        soundID = soundPool.load(this, R.raw.boom, 1);
+    }//实例化soundPool和soundID  R.raw.qipao为音频资源位置
+
+    private void playSound() {
+        if (AllCtl.sound) {
+            soundPool.play(
+                    soundID,
+                    1f,      //左耳道音量【0~1】
+                    1f,      //右耳道音量【0~1】
+                    0,         //播放优先级【0表示最低优先级】
+                    0,         //循环模式【0表示循环一次，-1表示一直循环，其他表示数字+1表示当前数字对应的循环次数】
+                    1          //播放速度【1是正常，范围从0~2】
+            );
+        }
     }
 }

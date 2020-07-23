@@ -1,0 +1,35 @@
+[33mcommit c139c9c679776cdb6ae98ed3e045cf34c989a416[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Lhy <Lhy@mindmini.com>
+Date:   Thu Jul 23 15:15:30 2020 +0800
+
+    隐藏了自定义题库
+
+[33mcommit 40fbee62049901607323ef9aa659ded68697eb05[m
+Author: tyx <1162320426@qq.com>
+Date:   Wed Jul 22 22:21:42 2020 +0800
+
+    添加了判断是否是第一次打开应用，是的话就自动注册一个用户
+
+[33mcommit 72a7dbd11f3f5076bcdf7a93606f1cb34030594a[m
+Author: tyx <1162320426@qq.com>
+Date:   Wed Jul 22 22:10:56 2020 +0800
+
+    添加了判断是否是第一次打开应用，是的话就自动注册一个用户
+
+[33mcommit 69bfc90984121686336af7e876cff2a5385325cc[m
+Author: Lhy <Lhy@mindmini.com>
+Date:   Wed Jul 22 13:41:50 2020 +0800
+
+    删除左下图标对话框
+
+[33mcommit 403d4826bfe7d3e3cfd5d328de102860e4df1bd5[m
+Author: Lhy <Lhy@mindmini.com>
+Date:   Wed Jul 22 13:29:48 2020 +0800
+
+    first commit
+
+[33mcommit 32843719e333de0f4c274127173b415ad350eef3[m
+Author: whitebutton <44365486+whitebutton@users.noreply.github.com>
+Date:   Wed Jul 22 11:44:46 2020 +0800
+
+    Initial commit
