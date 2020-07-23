@@ -1,6 +1,8 @@
 package com.example.administrator.game_mission.More.lh;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +24,8 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     private Button close;
     private int types;
     private Button countine;
-
+    private SoundPool soundPool;//音频通知声音播放器
+    private int soundID;//音频资源ID
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +33,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         Intent intent = getIntent();
         types = intent.getIntExtra("types", 0);
         initView();
+        initSound();
         setQuestion(types);
         if (AllCtl.continueGame){
             countine.setVisibility(View.VISIBLE);
@@ -93,7 +97,27 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.countine:
                 setQuestion(types);
+                playSound();
                 break;
+        }
+    }
+    //音频
+    @SuppressLint("NewApi")
+    private void initSound() {
+        soundPool = new SoundPool.Builder().build();
+        soundID = soundPool.load(this, R.raw.fanye, 1);
+    }//实例化soundPool和soundID  R.raw.qipao为音频资源位置
+
+    private void playSound() {
+        if (AllCtl.sound) {
+            soundPool.play(
+                    soundID,
+                    1f,      //左耳道音量【0~1】
+                    1f,      //右耳道音量【0~1】
+                    0,         //播放优先级【0表示最低优先级】
+                    0,         //循环模式【0表示循环一次，-1表示一直循环，其他表示数字+1表示当前数字对应的循环次数】
+                    1          //播放速度【1是正常，范围从0~2】
+            );
         }
     }
 }

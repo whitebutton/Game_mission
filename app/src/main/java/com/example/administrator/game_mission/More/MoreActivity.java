@@ -143,7 +143,7 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
         ad.setDownloadListener(new TTAppDownloadListener() {
             @Override
             public void onIdle() {
-                TToast.show(MoreActivity.this, "点击开始下载", Toast.LENGTH_LONG);
+//                TToast.show(MoreActivity.this, "点击开始下载", Toast.LENGTH_LONG);
             }
 
             @Override
@@ -166,12 +166,12 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onInstalled(String fileName, String appName) {
-                TToast.show(MoreActivity.this, "安装完成，点击图片打开", Toast.LENGTH_LONG);
+//                TToast.show(MoreActivity.this, "安装完成，点击图片打开", Toast.LENGTH_LONG);
             }
 
             @Override
             public void onDownloadFinished(long totalBytes, String fileName, String appName) {
-                TToast.show(MoreActivity.this, "点击安装", Toast.LENGTH_LONG);
+//                TToast.show(MoreActivity.this, "点击安装", Toast.LENGTH_LONG);
             }
         });
     }
@@ -258,22 +258,22 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.button1:
                 playSound();
-                Toast.makeText(this, "转盘模式", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "转盘模式", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MoreActivity.this, LHActivity.class));
                 break;
             case R.id.button2:
                 playSound();
-                Toast.makeText(this, "炸弹模式", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "炸弹模式", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MoreActivity.this, ZWNActivity.class));
                 break;
             case R.id.button3:
                 playSound();
-                Toast.makeText(this, "色子模式", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "色子模式", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MoreActivity.this, TYXActivity.class));
                 break;
             case R.id.button4:
                 playSound();
-                Toast.makeText(this, "翻牌模式", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "翻牌模式", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MoreActivity.this, LHYActivity.class));
                 break;
         }

@@ -149,7 +149,7 @@ public class RandomActivity extends AppCompatActivity implements View.OnClickLis
         ad.setDownloadListener(new TTAppDownloadListener() {
             @Override
             public void onIdle() {
-                TToast.show(RandomActivity.this, "点击开始下载", Toast.LENGTH_LONG);
+//                TToast.show(RandomActivity.this, "点击开始下载", Toast.LENGTH_LONG);
             }
 
             @Override
@@ -172,12 +172,12 @@ public class RandomActivity extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public void onInstalled(String fileName, String appName) {
-                TToast.show(RandomActivity.this, "安装完成，点击图片打开", Toast.LENGTH_LONG);
+//                TToast.show(RandomActivity.this, "安装完成，点击图片打开", Toast.LENGTH_LONG);
             }
 
             @Override
             public void onDownloadFinished(long totalBytes, String fileName, String appName) {
-                TToast.show(RandomActivity.this, "点击安装", Toast.LENGTH_LONG);
+//                TToast.show(RandomActivity.this, "点击安装", Toast.LENGTH_LONG);
             }
         });
     }

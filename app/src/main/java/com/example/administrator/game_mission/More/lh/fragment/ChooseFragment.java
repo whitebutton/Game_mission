@@ -80,6 +80,7 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
             list.add(new PanBean("默认转盘2", new String[]{"大冒险", "再来一次", "真心话", "真心话大冒险", "亲一口", "真心话", "跳支舞", "喝杯酒", "大冒险", "唱首歌"}));
             saveMessage();
         } else if (!once) {
+            list.clear();
             for (int j = 0; j < sp.getInt("listSize", 0); j++) {
                 String news[] = new String[10];
                 for (int k = 0; k < 10; k++) {
