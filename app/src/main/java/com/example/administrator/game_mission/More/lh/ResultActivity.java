@@ -97,7 +97,9 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.countine:
                 setQuestion(types);
-                playSound();
+                if (AllCtl.sound){
+                    playSound();
+                }
                 break;
         }
     }
