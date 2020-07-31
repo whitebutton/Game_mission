@@ -48,7 +48,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private Button[] allChoseButton;
     private SoundPool soundPool;//音频通知声音播放器
     private int soundID;//音频资源ID
-
+    private Button needUnLock;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +65,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         TTAdManagerHolder.get().requestPermissionIfNecessary(this);
         //step3:创建TTAdNative对象,用于调用广告请求接口
         mTTAdNative = ttAdManager.createAdNative(getApplicationContext());
-
+        loadAd("945329898", TTAdConstant.VERTICAL);
     }
     private boolean mHasShowDownloadActive = false;
 
@@ -142,6 +142,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onVideoComplete() {
                         Log.d(TAG, "Callback --> rewardVideoAd complete");
+                        unLockButton(needUnLock);
                         TToast.show(QuestionActivity.this, "已解锁该题库");
                     }
 
@@ -324,15 +325,15 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void needUnLock(String string, int num) {
-        loadAd("945329898", TTAdConstant.VERTICAL);
         if (AllCtl.currType.getBoolean(String.valueOf(allChoseButton[num].getId()), false)) {
             choseTopic(string, allChoseButton[num]);
         } else {
-            diaglo(allChoseButton[num]);
+            needUnLock=allChoseButton[num];
+            diaglo();
         }
     }
 
-    private void diaglo(final Button button) {
+    private void diaglo() {
         final MyDialog myDialog = new MyDialog(this, R.style.defaultDialogStyle);
         myDialog.setMessage("观看广告后解锁");
         myDialog.setCancel(new MyDialog.IOnCancelListener() {
@@ -349,7 +350,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 if (mttRewardVideoAd != null) {
                     mttRewardVideoAd.showRewardVideoAd(QuestionActivity.this, TTAdConstant.RitScenes.CUSTOMIZE_SCENES, "scenes_test");
                     mttRewardVideoAd = null;
-                    unLockButton(button);
                 } else {
                     TToast.show(QuestionActivity.this, "请先加载广告");
                 }
