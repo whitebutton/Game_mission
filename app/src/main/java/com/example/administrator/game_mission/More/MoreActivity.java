@@ -123,7 +123,7 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onRenderFail(View view, String msg, int code) {
                 Log.e("ExpressView", "render fail:" + (System.currentTimeMillis() - startTime));
-                TToast.show(mContext, msg + " code:" + code);
+//                TToast.show(mContext, msg + " code:" + code);
             }
 
             @Override
@@ -150,18 +150,18 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
             public void onDownloadActive(long totalBytes, long currBytes, String fileName, String appName) {
                 if (!mHasShowDownloadActive) {
                     mHasShowDownloadActive = true;
-                    TToast.show(MoreActivity.this, "下载中，点击暂停", Toast.LENGTH_LONG);
+//                    TToast.show(MoreActivity.this, "下载中，点击暂停", Toast.LENGTH_LONG);
                 }
             }
 
             @Override
             public void onDownloadPaused(long totalBytes, long currBytes, String fileName, String appName) {
-                TToast.show(MoreActivity.this, "下载暂停，点击继续", Toast.LENGTH_LONG);
+//                TToast.show(MoreActivity.this, "下载暂停，点击继续", Toast.LENGTH_LONG);
             }
 
             @Override
             public void onDownloadFailed(long totalBytes, long currBytes, String fileName, String appName) {
-                TToast.show(MoreActivity.this, "下载失败，点击重新下载", Toast.LENGTH_LONG);
+//                TToast.show(MoreActivity.this, "下载失败，点击重新下载", Toast.LENGTH_LONG);
             }
 
             @Override

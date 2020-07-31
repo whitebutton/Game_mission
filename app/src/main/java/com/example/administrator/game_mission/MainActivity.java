@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initUser() {
+        Log.i("TAGG", "initUser: "+AllCtl.currType.getString("user","cs"));
         if (!AllCtl.currType.getBoolean("is",false)){
             httpUtil.httpPost("addUser",new Handler(){
                 @Override
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 AllCtl.currTypeeditor.putBoolean("is",true);
                                 AllCtl.currTypeeditor.putString("user",userBean.getData().getUserName()+""+userBean.getData().getId());
                                 AllCtl.currTypeeditor.commit();
+                                Log.i("TAGG", "initUser: "+AllCtl.currType.getString("user","cs"));
                             }
                         },UserBean.class);
                     }

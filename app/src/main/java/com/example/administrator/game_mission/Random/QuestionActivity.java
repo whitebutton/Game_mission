@@ -87,6 +87,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                     .build();
         } else {
             //模板广告需要设置期望个性化模板广告的大小,单位dp,代码位是否属于个性化模板广告，请在穿山甲平台查看
+            Log.i(TAG, "loadAd: "+AllCtl.currType.getString("user","user110"));
             adSlot = new AdSlot.Builder()
                     .setCodeId(codeId)
                     .setSupportDeepLink(true)

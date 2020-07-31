@@ -33,10 +33,10 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         soundButton.setOnClickListener(this);
         shockButton = (Switch) findViewById(R.id.shockButton);
         shockButton.setOnClickListener(this);
-        removeAdvice = (TextView) findViewById(R.id.removeAdvice);
-        removeAdvice.setOnClickListener(this);
-        writeCom = (TextView) findViewById(R.id.writeCom);
-        writeCom.setOnClickListener(this);
+//        removeAdvice = (TextView) findViewById(R.id.removeAdvice);
+//        removeAdvice.setOnClickListener(this);
+//        writeCom = (TextView) findViewById(R.id.writeCom);
+//        writeCom.setOnClickListener(this);
     }
 
     private void choseFlag() {
@@ -60,10 +60,10 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 AllCtl.currTypeeditor.apply();
                 AllCtl.shock = !AllCtl.shock;
                 break;
-            case R.id.removeAdvice:
-                break;
-            case R.id.writeCom:
-                break;
+//            case R.id.removeAdvice:
+//                break;
+//            case R.id.writeCom:
+//                break;
         }
     }
 }

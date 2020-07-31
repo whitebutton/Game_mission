@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Game_mission</string>
+    <string name="app_name">真心话大冒险</string>
     <string-array name="name">
         <item>真心话</item>
         <item>大冒险</item>

@@ -95,7 +95,7 @@ public class RandomActivity extends AppCompatActivity implements View.OnClickLis
         mTTAdNative.loadBannerExpressAd(adSlot, new TTAdNative.NativeExpressAdListener() {
             @Override
             public void onError(int code, String message) {
-                TToast.show(RandomActivity.this, "load error : " + code + ", " + message);
+//                TToast.show(RandomActivity.this, "load error : " + code + ", " + message);
                 mExpressContainer.removeAllViews();
             }
 
@@ -129,7 +129,7 @@ public class RandomActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onRenderFail(View view, String msg, int code) {
                 Log.e("ExpressView", "render fail:" + (System.currentTimeMillis() - startTime));
-                TToast.show(mContext, msg + " code:" + code);
+//                TToast.show(mContext, msg + " code:" + code);
             }
 
             @Override
@@ -156,18 +156,18 @@ public class RandomActivity extends AppCompatActivity implements View.OnClickLis
             public void onDownloadActive(long totalBytes, long currBytes, String fileName, String appName) {
                 if (!mHasShowDownloadActive) {
                     mHasShowDownloadActive = true;
-                    TToast.show(RandomActivity.this, "下载中，点击暂停", Toast.LENGTH_LONG);
+//                    TToast.show(RandomActivity.this, "下载中，点击暂停", Toast.LENGTH_LONG);
                 }
             }
 
             @Override
             public void onDownloadPaused(long totalBytes, long currBytes, String fileName, String appName) {
-                TToast.show(RandomActivity.this, "下载暂停，点击继续", Toast.LENGTH_LONG);
+//                TToast.show(RandomActivity.this, "下载暂停，点击继续", Toast.LENGTH_LONG);
             }
 
             @Override
             public void onDownloadFailed(long totalBytes, long currBytes, String fileName, String appName) {
-                TToast.show(RandomActivity.this, "下载失败，点击重新下载", Toast.LENGTH_LONG);
+//                TToast.show(RandomActivity.this, "下载失败，点击重新下载", Toast.LENGTH_LONG);
             }
 
             @Override
@@ -201,7 +201,7 @@ public class RandomActivity extends AppCompatActivity implements View.OnClickLis
                 @Override
                 public void onItemClick(FilterWord filterWord) {
                     //屏蔽广告
-                    TToast.show(mContext, "点击 " + filterWord.getName());
+//                    TToast.show(mContext, "点击 " + filterWord.getName());
                     //用户选择不喜欢原因后，移除广告展示
                     mExpressContainer.removeAllViews();
                 }
@@ -213,14 +213,14 @@ public class RandomActivity extends AppCompatActivity implements View.OnClickLis
         ad.setDislikeCallback(RandomActivity.this, new TTAdDislike.DislikeInteractionCallback() {
             @Override
             public void onSelected(int position, String value) {
-                TToast.show(mContext, "点击 " + value);
+//                TToast.show(mContext, "点击 " + value);
                 //用户选择不喜欢原因后，移除广告展示
                 mExpressContainer.removeAllViews();
             }
 
             @Override
             public void onCancel() {
-                TToast.show(mContext, "点击取消 ");
+//                TToast.show(mContext, "点击取消 ");
             }
 
             @Override
