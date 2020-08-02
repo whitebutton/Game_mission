@@ -46,12 +46,14 @@
             app:layout_constraintTop_toBottomOf="@id/type" />
     </android.support.constraint.ConstraintLayout>
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:orientation="horizontal"
+        android:gravity="center_horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/center">
+        app:layout_constraintTop_toBottomOf="@id/center"
+        >
         <Button
             android:id="@+id/countine"
             android:layout_width="wrap_content"
