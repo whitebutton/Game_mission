@@ -46,4 +46,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation files('libs/gson-2.8.0.jar')
     implementation files('libs/volley.jar')
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
 }

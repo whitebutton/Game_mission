@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.bytedance.sdk.openadsdk.AdSlot;
@@ -16,6 +17,7 @@ import com.bytedance.sdk.openadsdk.TTAppDownloadListener;
 import com.bytedance.sdk.openadsdk.TTSplashAd;
 import com.example.administrator.game_mission.MainActivity;
 import com.example.administrator.game_mission.R;
+import com.jaeger.library.StatusBarUtil;
 
 public class SplashActivity extends AppCompatActivity {
     private static final String TAG = "SplashActivity";
@@ -36,6 +38,9 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        //显示整个界面
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
         mSplashContainer = (FrameLayout) findViewById(R.id.splash_container);
         //step2:创建TTAdNative对象
         mTTAdNative = TTAdManagerHolder.get().createAdNative(this);
@@ -217,7 +222,8 @@ public class SplashActivity extends AppCompatActivity {
     private void goToMainActivity() {
         Intent intent = new Intent(SplashActivity.this, MainActivity.class);
         startActivity(intent);
-        mSplashContainer.removeAllViews();
+        overridePendingTransition(R.anim.right_to_left,R.anim.activity_stay);
+//        mSplashContainer.removeAllViews();
         this.finish();
     }
 
