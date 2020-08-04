@@ -4,7 +4,9 @@ package com.example.administrator.game_mission.More.lh.fragment;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -50,6 +52,7 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
     private boolean once;
+    private EditText nowEdit;
 
     @Nullable
     @Override
@@ -99,6 +102,7 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
         lv1.setAdapter(mLvAdapter);
         editor.putInt("count", ++count);
         editor.commit();
+
     }
 
     @Override
@@ -113,9 +117,11 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                     getActivity().finish();
                 }
                 if (lv1.getAdapter() == mLvAdapter2) {
+                    closeKeybord(nowEdit, getActivity());
                     lv1.setAdapter(mLvAdapter);
                 }
                 if (lv1.getAdapter() == mLvAdapter3) {
+                    closeKeybord(nowEdit, getActivity());
                     lv1.setAdapter(mLvAdapter);
                     panname.setText("");
                 }
@@ -148,8 +154,8 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                 //3添加转盘
                 if (lv1.getAdapter() == mLvAdapter3) {
                     if (!panname.getText().toString().trim().equals("")) {
-                        for (int k = 0; k <list.size() ; k++) {
-                            if (panname.getText().toString().trim().equals(list.get(k).getPanName())){
+                        for (int k = 0; k < list.size(); k++) {
+                            if (panname.getText().toString().trim().equals(list.get(k).getPanName())) {
                                 Toast.makeText(getActivity(), "转盘名称重复", Toast.LENGTH_SHORT).show();
                                 panname.setText("");
                                 return;
@@ -287,15 +293,21 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                 @Override
                 public void onClick(View view) {
                     if (finalHolder.btn.getText().toString().equals("改")) {
+                        for (int j = 0; j < mLvAdapter2.content.length; j++) {
+                            if (mLvAdapter2.changes[j]) {
+                                Toast.makeText(getActivity(), "请先保存先前要修改的挑战内容", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        }
                         finalHolder.tv2.setVisibility(View.INVISIBLE);
                         finalHolder.ed1.setVisibility(View.VISIBLE);
                         finalHolder.ed1.setText(finalHolder.tv2.getText().toString());
-                        showSoftInputFromWindow(getActivity(),finalHolder.ed1);
+                        showSoftInputFromWindow(getActivity(), finalHolder.ed1);
                         finalHolder.btn.setText("存");
                         finalHolder.btn.setBackgroundResource(R.drawable.lh_bg_btn3);
                         changes[i] = true;
                     } else {
-                        if (finalHolder.ed1.getText().toString().trim().equals("")){
+                        if (finalHolder.ed1.getText().toString().trim().equals("")) {
                             Toast.makeText(getActivity(), "挑战内容不能为空", Toast.LENGTH_SHORT).show();
                             return;
                         }
@@ -309,12 +321,13 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                         changes[i] = false;
                         saveMessage();
                     }
+
                 }
             });
-            setListViewRequestFocus(finalHolder.rootView,finalHolder.ed1,finalHolder.btn);
+            setListViewRequestFocus(finalHolder.rootView, finalHolder.ed1, finalHolder.btn);
+
             return view;
         }
-
 
 
     }
@@ -366,15 +379,21 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                 @Override
                 public void onClick(View view) {
                     if (finalHolder.btn.getText().toString().equals("改")) {
+                        for (int j = 0; j < mLvAdapter3.content.length; j++) {
+                            if (mLvAdapter3.changes[j]) {
+                                Toast.makeText(getActivity(), "请先保存先前要修改的挑战内容", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        }
                         finalHolder.tv2.setVisibility(View.INVISIBLE);
                         finalHolder.ed1.setVisibility(View.VISIBLE);
                         finalHolder.ed1.setText(finalHolder.tv2.getText().toString());
-                        showSoftInputFromWindow(getActivity(),finalHolder.ed1);
+                        showSoftInputFromWindow(getActivity(), finalHolder.ed1);
                         finalHolder.btn.setText("存");
                         finalHolder.btn.setBackgroundResource(R.drawable.lh_bg_btn3);
                         changes[i] = true;
                     } else {
-                        if (finalHolder.ed1.getText().toString().trim().equals("")){
+                        if (finalHolder.ed1.getText().toString().trim().equals("")) {
                             Toast.makeText(getActivity(), "挑战内容不能为空", Toast.LENGTH_SHORT).show();
                             return;
                         }
@@ -388,11 +407,10 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                     }
                 }
             });
-                setListViewRequestFocus(finalHolder.rootView,finalHolder.ed1,finalHolder.btn);
+            setListViewRequestFocus(finalHolder.rootView, finalHolder.ed1, finalHolder.btn);
+
             return view;
         }
-
-
     }
     public class ViewHolder {
         public View rootView;
@@ -408,28 +426,35 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
             this.ed1 = (EditText) rootView.findViewById(R.id.ed1);
             this.btn = (Button) rootView.findViewById(R.id.btn);
         }
-
     }
     //listview聚焦edit
-    private void setListViewRequestFocus(View view, final EditText editText, final Button button){
+    private void setListViewRequestFocus(View view, final EditText editText, final Button button) {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (button.getText().toString().equals("存")){
-                    showSoftInputFromWindow(getActivity(),editText);
+                if (button.getText().toString().equals("存")) {
+                    showSoftInputFromWindow(getActivity(), editText);
                 }
             }
         });
     }
-//弹出软键盘
-    public static void showSoftInputFromWindow(Context mContext,EditText mEditText) {
+
+    //弹出软键盘
+    public void showSoftInputFromWindow(Activity activity, EditText mEditText) {
+        nowEdit = mEditText;
         mEditText.requestFocus();
         mEditText.setFocusable(true);
-        mEditText.setFocusableInTouchMode(true);
-        InputMethodManager imm = (InputMethodManager) mContext
-                .getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(mEditText, InputMethodManager.RESULT_SHOWN);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,
-                InputMethodManager.HIDE_IMPLICIT_ONLY);
+            mEditText.setFocusableInTouchMode(true);
+            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+    }
+
+    //关闭软键盘
+    public void closeKeybord(EditText mEditText, Context mContext) {
+        if (mEditText != null) {
+            InputMethodManager imm = (InputMethodManager) mContext
+                    .getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(mEditText.getWindowToken(), 0);
+        }
     }
 }
