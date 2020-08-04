@@ -311,7 +311,7 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                     }
                 }
             });
-            setListViewRequestFocus(finalHolder.rootView,finalHolder.ed1);
+            setListViewRequestFocus(finalHolder.rootView,finalHolder.ed1,finalHolder.btn);
             return view;
         }
 
@@ -388,7 +388,7 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                     }
                 }
             });
-            setListViewRequestFocus(finalHolder.rootView,finalHolder.ed1);
+                setListViewRequestFocus(finalHolder.rootView,finalHolder.ed1,finalHolder.btn);
             return view;
         }
 
@@ -411,17 +411,21 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
 
     }
     //listview聚焦edit
-    private void setListViewRequestFocus(View view, final EditText editText){
+    private void setListViewRequestFocus(View view, final EditText editText, final Button button){
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showSoftInputFromWindow(getActivity(),editText);
+                if (button.getText().toString().equals("存")){
+                    showSoftInputFromWindow(getActivity(),editText);
+                }
             }
         });
     }
-
+//弹出软键盘
     public static void showSoftInputFromWindow(Context mContext,EditText mEditText) {
         mEditText.requestFocus();
+        mEditText.setFocusable(true);
+        mEditText.setFocusableInTouchMode(true);
         InputMethodManager imm = (InputMethodManager) mContext
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(mEditText, InputMethodManager.RESULT_SHOWN);
