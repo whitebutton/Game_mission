@@ -132,7 +132,7 @@ public class PanFragment extends Fragment implements View.OnClickListener {
 
     private void startRotate() {
         double onceTime = 100;
-        int random = new Random().nextInt(2881 - 1440) + 1440;
+        int random = new Random().nextInt(361) + 1080;
         int ooeNum = random / 36;
         double totalTime = ooeNum * onceTime;
         i = (ooeNum - 4) % 10 - 1;
