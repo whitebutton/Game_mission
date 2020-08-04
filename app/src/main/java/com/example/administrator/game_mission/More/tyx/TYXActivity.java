@@ -261,8 +261,8 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.changeQuestionButton:
-                if (onceStart){
-                    startActivity(new Intent(this,QuestionActivity.class));
+                if (onceStart) {
+                    startActivity(new Intent(this, QuestionActivity.class));
                 }
                 break;
         }

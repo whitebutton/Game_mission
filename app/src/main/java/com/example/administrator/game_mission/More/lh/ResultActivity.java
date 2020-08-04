@@ -4,14 +4,18 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.game_mission.AllCtl;
+import com.example.administrator.game_mission.More.lh.widget.MyDialog;
+import com.example.administrator.game_mission.More.tyx.TYXActivity;
 import com.example.administrator.game_mission.R;
 
 import java.util.Random;
@@ -26,6 +30,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     private Button countine;
     private SoundPool soundPool;//音频通知声音播放器
     private int soundID;//音频资源ID
+    private Boolean onceGame=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,27 +83,40 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.close:
-//                MyDialog myDialog = new MyDialog(this, R.style.defaultDialogStyle);
-//                myDialog.setCancel(new MyDialog.IOnCancelListener() {
-//                    @Override
-//                    public void onCancel(MyDialog Dialog) {
-//                        Dialog.dismiss();
-//                    }
-//                });
-//                myDialog.setConfirm(new MyDialog.IOnConfirmListener() {
-//                    @Override
-//                    public void onConfirm(MyDialog Dialog) {
-//                        Dialog.dismiss();
-//                        finish();
-//                    }
-//                });
-//                myDialog.show();
-                finish();
+                final MyDialog myDialog = new MyDialog(this, R.style.defaultDialogStyle);
+                myDialog.setMessage("你确定关闭当前页面吗？");
+                myDialog.setCancel(new MyDialog.IOnCancelListener() {
+                    @Override
+                    public void onCancel(MyDialog Dialog) {
+                        Dialog.dismiss();
+                    }
+                });
+                myDialog.setConfirm(new MyDialog.IOnConfirmListener() {
+                    @Override
+                    public void onConfirm(MyDialog Dialog) {
+                        //确定后相应操作
+                        Dialog.dismiss();
+                        finish();
+                    }
+                });
+                myDialog.show();
                 break;
             case R.id.countine:
-                setQuestion(types);
-                if (AllCtl.sound){
-                    playSound();
+                if (onceGame){
+                    onceGame=!onceGame;
+                    setQuestion(types);
+                    Handler handler=new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            onceGame=!onceGame;
+                        }
+                    },3000);
+                    if (AllCtl.sound){
+                        playSound();
+                    }
+                }else {
+                    Toast.makeText(this, "3秒后才可继续哦", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
@@ -122,4 +140,5 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             );
         }
     }
+
 }
