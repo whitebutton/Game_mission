@@ -95,5 +95,15 @@
             android:textStyle="bold"
             android:layout_height="wrap_content" />
     </RelativeLayout>
+    <Button
+        android:id="@+id/changeQuestionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_margin="10dp"
+        android:layout_alignParentRight="true"
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/button_tyx_cb"
+        android:text="更换题库" />
 
 </RelativeLayout>

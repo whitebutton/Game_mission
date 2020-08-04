@@ -2,7 +2,6 @@ package com.example.administrator.game_mission.More.tyx;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -18,18 +17,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.game_mission.AllCtl;
 import com.example.administrator.game_mission.More.lh.ResultActivity;
 import com.example.administrator.game_mission.More.lh.widget.MyDialog;
 import com.example.administrator.game_mission.R;
-import com.example.administrator.game_mission.Random.DetailActivity;
+import com.example.administrator.game_mission.Random.QuestionActivity;
 
 import java.util.Random;
 
-public class TYXActivity extends AppCompatActivity {
+public class TYXActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView img1;
     private Button bt1;
@@ -41,7 +39,11 @@ public class TYXActivity extends AppCompatActivity {
 
     private ImageView back;
     private ImageView touzi;
-    private Boolean onceStart=true;
+    private Boolean onceStart = true;
+    private ImageView animal2;
+    private ImageView animal;
+    private Button changeQuestionButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +68,7 @@ public class TYXActivity extends AppCompatActivity {
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onceStart){
+                if (onceStart) {
                     play();
                 }
             }
@@ -75,7 +77,7 @@ public class TYXActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (onceStart){
+                if (onceStart) {
                     finish();
                 }
             }
@@ -129,6 +131,12 @@ public class TYXActivity extends AppCompatActivity {
                 });
             }
         });
+        animal2 = (ImageView) findViewById(R.id.animal2);
+        animal2.setOnClickListener(this);
+        animal = (ImageView) findViewById(R.id.animal);
+        animal.setOnClickListener(this);
+        changeQuestionButton = (Button) findViewById(R.id.changeQuestionButton);
+        changeQuestionButton.setOnClickListener(this);
     }
 
     private SensorEventListener sensorEventListener = new SensorEventListener() {
@@ -137,8 +145,8 @@ public class TYXActivity extends AppCompatActivity {
             float x = Math.abs(event.values[0]);
             float y = Math.abs(event.values[1]);
             float z = Math.abs(event.values[2]);
-            if ((x > 15 || y > 15 || z > 15)&&onceStart) {
-                    play();
+            if ((x > 15 || y > 15 || z > 15) && onceStart) {
+                play();
             }
         }
 
@@ -149,15 +157,15 @@ public class TYXActivity extends AppCompatActivity {
     };
 
     private void play() {
-        onceStart=false;
+        onceStart = false;
         player = new MediaPlayer();
         animationDrawable = (AnimationDrawable) getResources().getDrawable(R.drawable.animation);
         img1.setBackgroundDrawable(animationDrawable);
         player = MediaPlayer.create(TYXActivity.this, R.raw.m1683);
         animationDrawable.setOneShot(false);
         animationDrawable.start();
-        Log.i("aaa", "play: "+AllCtl.sound);
-        if (AllCtl.sound){
+        Log.i("aaa", "play: " + AllCtl.sound);
+        if (AllCtl.sound) {
             player.start();
         }
         i = new Random().nextInt(6);
@@ -189,7 +197,7 @@ public class TYXActivity extends AppCompatActivity {
 
             }
         }, 1500);
-        Handler handler1=new Handler();
+        Handler handler1 = new Handler();
         handler1.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -226,10 +234,11 @@ public class TYXActivity extends AppCompatActivity {
 
                 });
                 myDialog.show();
-                onceStart=true;
+                onceStart = true;
             }
-        },2000);
+        }, 2000);
     }
+
     //取消监听
     @Override
     protected void onDestroy() {
@@ -241,10 +250,21 @@ public class TYXActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (onceStart){
+        if (onceStart) {
             finish();
-        }else {
+        } else {
             Toast.makeText(this, "正在抽取...", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.changeQuestionButton:
+                if (!onceStart){
+                    startActivity(new Intent(this,QuestionActivity.class));
+                }
+                break;
         }
     }
 }

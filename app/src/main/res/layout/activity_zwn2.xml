@@ -38,6 +38,15 @@
             android:layout_margin="5dp"
             android:layout_gravity="bottom"
             android:src="@mipmap/tuzixifa"/>
+        <Button
+            android:id="@+id/changeQuestionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_margin="10dp"
+            android:textColor="#fff"
+            android:layout_gravity="bottom|right"
+            android:background="@drawable/button_zyn_cb"
+            android:text="更换题库" />
     </FrameLayout>
 
 </RelativeLayout>

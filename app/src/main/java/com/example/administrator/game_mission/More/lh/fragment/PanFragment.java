@@ -5,7 +5,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,8 +16,8 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.game_mission.AllCtl;
@@ -26,6 +25,7 @@ import com.example.administrator.game_mission.More.lh.ResultActivity;
 import com.example.administrator.game_mission.More.lh.widget.MyDialog;
 import com.example.administrator.game_mission.More.lh.widget.Turntable;
 import com.example.administrator.game_mission.R;
+import com.example.administrator.game_mission.Random.QuestionActivity;
 
 import java.util.Random;
 
@@ -41,6 +41,9 @@ public class PanFragment extends Fragment implements View.OnClickListener {
     private SoundPool soundPool;//音频通知声音播放器
     private int soundID;//音频资源ID
     private int stream;
+    private ImageView animal;
+    private Button changeQuestionButton;
+
     public static PanFragment newInstance(String[] items) {
         PanFragment panFragment = new PanFragment();
         Bundle bundle = new Bundle();
@@ -92,18 +95,18 @@ public class PanFragment extends Fragment implements View.OnClickListener {
                         //确定后相应操作
                         switch (s[i]) {
                             case "真心话":
-                                Intent intent = new Intent(getActivity(),ResultActivity.class);
-                                intent.putExtra("types",1);
+                                Intent intent = new Intent(getActivity(), ResultActivity.class);
+                                intent.putExtra("types", 1);
                                 startActivity(intent);
                                 break;
                             case "大冒险":
-                                Intent intent2 = new Intent(getActivity(),ResultActivity.class);
-                                intent2.putExtra("types",0);
+                                Intent intent2 = new Intent(getActivity(), ResultActivity.class);
+                                intent2.putExtra("types", 0);
                                 startActivity(intent2);
                                 break;
                             case "真心话大冒险":
-                                Intent intent3 = new Intent(getActivity(),ResultActivity.class);
-                                intent3.putExtra("types",2);
+                                Intent intent3 = new Intent(getActivity(), ResultActivity.class);
+                                intent3.putExtra("types", 2);
                                 startActivity(intent3);
                                 break;
                             case "再来一次":
@@ -128,6 +131,10 @@ public class PanFragment extends Fragment implements View.OnClickListener {
             public void onAnimationRepeat(Animator animator) {
             }
         });
+        animal = (ImageView) view.findViewById(R.id.animal);
+        animal.setOnClickListener(this);
+        changeQuestionButton = (Button) view.findViewById(R.id.changeQuestionButton);
+        changeQuestionButton.setOnClickListener(this);
     }
 
     private void startRotate() {
@@ -144,7 +151,7 @@ public class PanFragment extends Fragment implements View.OnClickListener {
         animatorSet.setDuration((long) totalTime);
         animatorSet.start();
         playSound();
-        Handler handler=new Handler();
+        Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -170,8 +177,14 @@ public class PanFragment extends Fragment implements View.OnClickListener {
                     Toast.makeText(getActivity(), "正在抽取...", Toast.LENGTH_SHORT).show();
                 }
                 break;
+            case R.id.changeQuestionButton:
+                if (running){
+                    startActivity(new Intent(getContext(),QuestionActivity.class));
+                }
+                break;
         }
     }
+
     //音频
     @SuppressLint("NewApi")
     private void initSound() {
@@ -180,8 +193,8 @@ public class PanFragment extends Fragment implements View.OnClickListener {
     }//实例化soundPool和soundID  R.raw.qipao为音频资源位置
 
     private void playSound() {
-        if (AllCtl.sound){
-            stream= soundPool.play(
+        if (AllCtl.sound) {
+            stream = soundPool.play(
                     soundID,
                     1f,      //左耳道音量【0~1】
                     1f,      //右耳道音量【0~1】
@@ -191,7 +204,8 @@ public class PanFragment extends Fragment implements View.OnClickListener {
             );
         }
     }
-    private void stopSound(){
+
+    private void stopSound() {
         soundPool.stop(stream);
     }
 

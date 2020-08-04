@@ -10,10 +10,10 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -22,13 +22,12 @@ import android.widget.Toast;
 import com.example.administrator.game_mission.AllCtl;
 import com.example.administrator.game_mission.More.lh.ResultActivity;
 import com.example.administrator.game_mission.R;
+import com.example.administrator.game_mission.Random.QuestionActivity;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-public class LHYActivity extends AppCompatActivity {
+public class LHYActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView back;
     private GridView flopcard;
@@ -38,7 +37,9 @@ public class LHYActivity extends AppCompatActivity {
     private ArrayList<Integer> allnum = new ArrayList<>();
     private SoundPool soundPool;//音频通知声音播放器
     private int soundID;//音频资源ID
-    private Boolean oneStart=true;
+    private Boolean oneStart = true;
+    private Button changeQuestionButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +61,8 @@ public class LHYActivity extends AppCompatActivity {
             }
         });
         flopcard = (GridView) findViewById(R.id.flopcard);
+        changeQuestionButton = (Button) findViewById(R.id.changeQuestionButton);
+        changeQuestionButton.setOnClickListener(this);
     }
 
     private void flop(final ImageView imageView, ImageView textView) {
@@ -84,6 +87,7 @@ public class LHYActivity extends AppCompatActivity {
             }
         });
     }
+
     //音频
     @SuppressLint("NewApi")
     private void initSound() {
@@ -92,7 +96,7 @@ public class LHYActivity extends AppCompatActivity {
     }//实例化soundPool和soundID  R.raw.qipao为音频资源位置
 
     private void playSound() {
-        if (AllCtl.sound){
+        if (AllCtl.sound) {
             soundPool.play(
                     soundID,
                     1f,      //左耳道音量【0~1】
@@ -103,6 +107,17 @@ public class LHYActivity extends AppCompatActivity {
             );
         }
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.changeQuestionButton:
+                if (!oneStart) return;
+                startActivity(new Intent(this,QuestionActivity.class));
+                break;
+        }
+    }
+
     private class flopAdapter extends BaseAdapter {
 
         @Override
@@ -146,13 +161,13 @@ public class LHYActivity extends AppCompatActivity {
                     flop(viewHolder.img1, viewHolder.img2);
                     allnum.add(i);
                     if (img[i].equals(R.mipmap.damaoxian)) {
-                        oneStart=false;
+                        oneStart = false;
                         Toast.makeText(LHYActivity.this, "您抽中的是大冒险，即将跳转", Toast.LENGTH_SHORT).show();
                         longtiemall();
                         goToTheGame(0);
                     }
                     if (img[i].equals(R.mipmap.zhenxinhua)) {
-                        oneStart=false;
+                        oneStart = false;
                         Toast.makeText(LHYActivity.this, "您抽中的是真心话，即将跳转", Toast.LENGTH_SHORT).show();
                         longtiemall();
                         goToTheGame(1);
@@ -161,7 +176,8 @@ public class LHYActivity extends AppCompatActivity {
             });
             return view1;
         }
-        private void goToTheGame(final int num){
+
+        private void goToTheGame(final int num) {
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
@@ -172,6 +188,7 @@ public class LHYActivity extends AppCompatActivity {
                 }
             }, 3000);
         }
+
         private void longtiemall() {
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -221,7 +238,7 @@ public class LHYActivity extends AppCompatActivity {
         super.onResume();
         flushArr(img);
         flushArr(img2);
-        oneStart=true;
+        oneStart = true;
         allnum.clear();
         flopAdapter = new flopAdapter();
         flopcard.setAdapter(flopAdapter);
