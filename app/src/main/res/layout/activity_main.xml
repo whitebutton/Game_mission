@@ -14,7 +14,8 @@
         android:layout_height="50dp"
         android:layout_gravity="right"
         android:layout_margin="10dp"
-        android:src="@mipmap/shezhi"/>
+        android:src="@mipmap/shezhi" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -26,15 +27,23 @@
             android:layout_marginBottom="50dp"
             android:gravity="center"
             android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:src="@mipmap/titleimg" />
+
             <TextView
                 android:id="@+id/currTopic"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
                 android:text="当前题库：普通"
                 android:textColor="#fff"
-                android:textStyle="bold"
                 android:textSize="25dp"
-                android:layout_marginBottom="30dp"
-                android:layout_height="wrap_content" />
+                android:textStyle="bold" />
+
             <Button
                 android:id="@+id/more"
                 android:layout_width="200dp"
@@ -56,6 +65,7 @@
                 android:textColor="#fff"
                 android:textSize="20dp"
                 android:textStyle="bold" />
+
             <Button
                 android:id="@+id/tiku"
                 android:layout_width="200dp"
