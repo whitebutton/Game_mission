@@ -86,7 +86,9 @@ public class Zwn2Activity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.changeQuestionButton:
-                startActivity(new Intent(this,QuestionActivity.class));
+                if (onecStart){
+                    startActivity(new Intent(this,QuestionActivity.class));
+                }
                 break;
         }
     }
