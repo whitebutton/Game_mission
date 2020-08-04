@@ -42,6 +42,7 @@
         android:gravity="center"
         android:maxLength="6"
         android:text=""
+        android:minWidth="0.01dp"
         android:textColor="#9B5D22"
         android:textSize="15sp"
         android:textStyle="bold"
