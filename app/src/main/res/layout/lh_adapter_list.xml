@@ -43,9 +43,10 @@
         android:maxLength="6"
         android:text=""
         android:textColor="#9B5D22"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:visibility="gone"
+        android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toLeftOf="@id/btn"
         app:layout_constraintTop_toTopOf="parent" />

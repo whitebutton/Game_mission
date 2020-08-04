@@ -1,6 +1,8 @@
 package com.example.administrator.game_mission.More.lh.fragment;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.game_mission.AllCtl;
+import com.example.administrator.game_mission.More.lh.LHActivity;
 import com.example.administrator.game_mission.More.lh.PanBean;
 import com.example.administrator.game_mission.More.tyx.TYXActivity;
 import com.example.administrator.game_mission.R;
@@ -143,6 +148,13 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                 //3添加转盘
                 if (lv1.getAdapter() == mLvAdapter3) {
                     if (!panname.getText().toString().trim().equals("")) {
+                        for (int k = 0; k <list.size() ; k++) {
+                            if (panname.getText().toString().trim().equals(list.get(k).getPanName())){
+                                Toast.makeText(getActivity(), "转盘名称重复", Toast.LENGTH_SHORT).show();
+                                panname.setText("");
+                                return;
+                            }
+                        }
                         for (int j = 0; j < mLvAdapter3.content.length; j++) {
                             if (mLvAdapter3.changes[j]) {
                                 Toast.makeText(getActivity(), "存在未保存的挑战", Toast.LENGTH_SHORT).show();
@@ -278,11 +290,15 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                         finalHolder.tv2.setVisibility(View.INVISIBLE);
                         finalHolder.ed1.setVisibility(View.VISIBLE);
                         finalHolder.ed1.setText(finalHolder.tv2.getText().toString());
-                        finalHolder.ed1.requestFocus();
+                        showSoftInputFromWindow(getActivity(),finalHolder.ed1);
                         finalHolder.btn.setText("存");
                         finalHolder.btn.setBackgroundResource(R.drawable.lh_bg_btn3);
                         changes[i] = true;
                     } else {
+                        if (finalHolder.ed1.getText().toString().trim().equals("")){
+                            Toast.makeText(getActivity(), "挑战内容不能为空", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         finalHolder.tv2.setText(finalHolder.ed1.getText().toString());
                         content[i] = finalHolder.ed1.getText().toString();
                         list.get(panNum).setItems(content);
@@ -295,6 +311,7 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                     }
                 }
             });
+            setListViewRequestFocus(finalHolder.rootView,finalHolder.ed1);
             return view;
         }
 
@@ -352,11 +369,15 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                         finalHolder.tv2.setVisibility(View.INVISIBLE);
                         finalHolder.ed1.setVisibility(View.VISIBLE);
                         finalHolder.ed1.setText(finalHolder.tv2.getText().toString());
-                        finalHolder.ed1.requestFocus();
+                        showSoftInputFromWindow(getActivity(),finalHolder.ed1);
                         finalHolder.btn.setText("存");
                         finalHolder.btn.setBackgroundResource(R.drawable.lh_bg_btn3);
                         changes[i] = true;
                     } else {
+                        if (finalHolder.ed1.getText().toString().trim().equals("")){
+                            Toast.makeText(getActivity(), "挑战内容不能为空", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         finalHolder.tv2.setText(finalHolder.ed1.getText().toString());
                         content[i] = finalHolder.ed1.getText().toString();
                         finalHolder.tv2.setVisibility(View.VISIBLE);
@@ -367,6 +388,7 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                     }
                 }
             });
+            setListViewRequestFocus(finalHolder.rootView,finalHolder.ed1);
             return view;
         }
 
@@ -387,5 +409,23 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
             this.btn = (Button) rootView.findViewById(R.id.btn);
         }
 
+    }
+    //listview聚焦edit
+    private void setListViewRequestFocus(View view, final EditText editText){
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showSoftInputFromWindow(getActivity(),editText);
+            }
+        });
+    }
+
+    public static void showSoftInputFromWindow(Context mContext,EditText mEditText) {
+        mEditText.requestFocus();
+        InputMethodManager imm = (InputMethodManager) mContext
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(mEditText, InputMethodManager.RESULT_SHOWN);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,
+                InputMethodManager.HIDE_IMPLICIT_ONLY);
     }
 }

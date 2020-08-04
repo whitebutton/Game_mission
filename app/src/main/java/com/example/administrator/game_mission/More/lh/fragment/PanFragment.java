@@ -79,6 +79,15 @@ public class PanFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onAnimationEnd(Animator animator) {
+                //暂停声音
+                Handler handler = new Handler();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        stopSound();
+                    }
+                });
+                //弹出对话框
                 running = true;
                 Log.d("TAG", s[i]);
                 final MyDialog myDialog = new MyDialog(getActivity(), R.style.defaultDialogStyle);
@@ -151,13 +160,6 @@ public class PanFragment extends Fragment implements View.OnClickListener {
         animatorSet.setDuration((long) totalTime);
         animatorSet.start();
         playSound();
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                stopSound();
-            }
-        }, (long) totalTime);
     }
 
     @Override
