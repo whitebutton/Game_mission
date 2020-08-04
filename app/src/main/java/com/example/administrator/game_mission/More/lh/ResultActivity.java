@@ -30,7 +30,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     private Button countine;
     private SoundPool soundPool;//音频通知声音播放器
     private int soundID;//音频资源ID
-    private Boolean onceGame=true;
+    private Boolean onceGame=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +45,13 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         }else {
             countine.setVisibility(View.GONE);
         }
+        Handler handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                onceGame=!onceGame;
+            }
+        },3000);
     }
 
     private void setQuestion(int num) {
