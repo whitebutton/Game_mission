@@ -255,6 +255,8 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
                 final String name = arr[i];
                 final MyDialog myDialog = new MyDialog(TYXActivity.this, R.style.defaultDialogStyle);
                 myDialog.setMessage(name);
+                //点击外侧不消失
+                myDialog.setCanceledOnTouchOutside(false);
                 myDialog.setCancel(new MyDialog.IOnCancelListener() {
                     @Override
                     public void onCancel(MyDialog Dialog) {

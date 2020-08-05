@@ -92,6 +92,8 @@ public class PanFragment extends Fragment implements View.OnClickListener {
                 Log.d("TAG", s[i]);
                 final MyDialog myDialog = new MyDialog(getActivity(), R.style.defaultDialogStyle);
                 myDialog.setMessage(s[i]);
+                //点击外侧不消失
+                myDialog.setCanceledOnTouchOutside(false);
                 myDialog.setCancel(new MyDialog.IOnCancelListener() {
                     @Override
                     public void onCancel(MyDialog Dialog) {
