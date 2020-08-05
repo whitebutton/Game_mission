@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/dice_diaglo_bg"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp">
+        android:layout_margin="5dp">
 
         <TextView
             android:layout_width="0dp"
@@ -35,9 +34,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp">
+        android:layout_margin="5dp">
 
         <TextView
             android:layout_width="0dp"
@@ -62,9 +60,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp">
+        android:layout_margin="5dp">
 
         <TextView
             android:layout_width="0dp"
@@ -90,8 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_weight="1"
-        android:layout_margin="10dp">
+        android:layout_margin="5dp">
 
         <TextView
             android:layout_width="0dp"
@@ -116,9 +112,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp">
+        android:layout_margin="5dp">
 
         <TextView
             android:layout_width="0dp"
@@ -143,9 +138,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp">
+        android:layout_margin="5dp">
 
         <TextView
             android:layout_width="0dp"
@@ -170,8 +164,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_margin="60dp">
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="20dp"
+        >
 
         <Button
             android:id="@+id/fanhui"
