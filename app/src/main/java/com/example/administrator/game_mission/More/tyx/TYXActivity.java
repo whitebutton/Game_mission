@@ -2,6 +2,7 @@ package com.example.administrator.game_mission.More.tyx;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -44,6 +45,9 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
     private ImageView animal;
     private Button changeQuestionButton;
 
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,9 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
         initData();
     }
 
+    /**
+     * 摇一摇传感器
+     */
     private void initData() {
         sensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
         Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -59,7 +66,7 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
     }
 
     private void initView() {
-
+        setData();
         img1 = findViewById(R.id.img1);
         bt1 = findViewById(R.id.bt1);
         player = new MediaPlayer();
@@ -109,10 +116,11 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
                 fanhui.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        setData();
                         dialog.dismiss();
                     }
                 });
-
+//                保存骰子点数对应的内容
                 baocun.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -122,11 +130,29 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
                         arr[3] = ed4.getText().toString().trim();
                         arr[4] = ed5.getText().toString().trim();
                         arr[5] = ed6.getText().toString().trim();
-                        Toast.makeText(TYXActivity.this, "保存成功", Toast.LENGTH_SHORT).show();
+                        boolean b = false;
                         for (int i = 0; i < arr.length; i++) {
-                            Log.i("TAG", "onClick: " + arr[i]);
+//                            判断是否有没填的项
+                            if (arr[i].equals("") || arr[i]==null){
+                                b = true;
+                                break;
+                            }
                         }
-                        dialog.dismiss();
+                        if (!b){
+//                            都填了，执行更新操作
+                            for (int i = 0; i < arr.length; i++) {
+                                editor.putString("arr"+i,arr[i]);
+                            }
+                            if (editor.commit()){
+                                Toast.makeText(TYXActivity.this, "保存成功", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            } else {
+                                Toast.makeText(TYXActivity.this, "保存失败", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+//                            没填，提示
+                            Toast.makeText(TYXActivity.this, "内容不能为空", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }
@@ -138,13 +164,35 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
         changeQuestionButton = (Button) findViewById(R.id.changeQuestionButton);
         changeQuestionButton.setOnClickListener(this);
     }
-
+    /**
+     * 保存初始值
+     */
+    private void setData(){
+        sharedPreferences = getSharedPreferences("tyx",MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        if (sharedPreferences.getBoolean("tyxis",false)){
+            for (int j = 0; j < arr.length; j++) {
+                arr[j] = sharedPreferences.getString("arr"+j,"");
+                Log.i("TAG", "setData: "+arr[j]);
+            }
+        } else {
+            for (int j = 0; j < arr.length; j++) {
+                editor.putString("arr"+j,arr[j]);
+            }
+            editor.putBoolean("tyxis",true);
+        }
+        editor.commit();
+    }
+    /**
+     * 摇一摇
+     */
     private SensorEventListener sensorEventListener = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent event) {
             float x = Math.abs(event.values[0]);
             float y = Math.abs(event.values[1]);
             float z = Math.abs(event.values[2]);
+//            如果摇动幅度大于15，执行骰子动画
             if ((x > 15 || y > 15 || z > 15) && onceStart) {
                 play();
             }
@@ -156,6 +204,9 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
         }
     };
 
+    /**
+     * 骰子的动画
+     */
     private void play() {
         onceStart = false;
         player = new MediaPlayer();
