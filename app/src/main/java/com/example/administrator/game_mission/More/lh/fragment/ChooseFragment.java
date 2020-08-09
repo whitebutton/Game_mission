@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -83,7 +84,9 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
         sp = getActivity().getSharedPreferences("key", MODE_PRIVATE);
         editor = sp.edit();
         int count = sp.getInt("count", 0);
-
+        addpan.setOnTouchListener(button1Listener);
+        btn1.setOnTouchListener(button1Listener);
+        btn2.setOnTouchListener(button1Listener);
         //第一次加入默认转盘
         if (count == 0) {
             list.add(new PanBean("默认转盘1", new String[]{"真心话", "大冒险", "再来一次", "喝杯酒", "亲一口", "唱首歌", "跳支舞", "真心话大冒险", "大冒险", "真心话"}));
@@ -463,4 +466,17 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
             imm.hideSoftInputFromWindow(mEditText.getWindowToken(), 0);
         }
     }
+    private View.OnTouchListener button1Listener = new View.OnTouchListener() {
+
+        public boolean onTouch(View arg0, MotionEvent event) {
+            // TODO Auto-generated method stub
+            int iAction = event.getAction();
+            if (iAction == MotionEvent.ACTION_DOWN) {	// 按下
+                arg0.setBackgroundResource(R.drawable.button_lh_bg2);
+            } else if (iAction == MotionEvent.ACTION_UP) {	// 弹起
+                arg0.setBackgroundResource(R.drawable.button_lh_bg1);
+            }
+            return false;	// return false表示系统会继续处理
+        }
+    };
 }
