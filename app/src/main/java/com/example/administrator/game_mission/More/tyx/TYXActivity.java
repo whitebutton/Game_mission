@@ -264,6 +264,7 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
                 myDialog.setMessage(name);
                 //点击外侧不消失
                 myDialog.setCanceledOnTouchOutside(false);
+                myDialog.setCancelable(false);
                 myDialog.setCancel(new MyDialog.IOnCancelListener() {
                     @Override
                     public void onCancel(MyDialog Dialog) {
