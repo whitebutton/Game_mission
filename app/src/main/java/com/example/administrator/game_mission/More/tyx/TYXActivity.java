@@ -263,6 +263,7 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
                     @Override
                     public void onCancel(MyDialog Dialog) {
                         Dialog.dismiss();
+                        onceStart = true;
                     }
                 });
                 myDialog.setConfirm(new MyDialog.IOnConfirmListener() {
@@ -274,14 +275,17 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
                                 Intent intent = new Intent(TYXActivity.this, ResultActivity.class);
                                 intent.putExtra("types", 1);
                                 startActivity(intent);
+                                onceStart = true;
                                 break;
                             case "大冒险":
                                 Intent intent2 = new Intent(TYXActivity.this, ResultActivity.class);
                                 intent2.putExtra("types", 0);
                                 startActivity(intent2);
+                                onceStart = true;
                                 break;
                             default:
                                 Toast.makeText(TYXActivity.this, "完成挑战，" + name, Toast.LENGTH_SHORT).show();
+                                onceStart = true;
                                 break;
                         }
                         Dialog.dismiss();
@@ -289,7 +293,6 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
 
                 });
                 myDialog.show();
-                onceStart = true;
             }
         }, 2000);
     }
