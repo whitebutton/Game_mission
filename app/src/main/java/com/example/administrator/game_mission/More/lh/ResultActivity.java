@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     private SoundPool soundPool;//音频通知声音播放器
     private int soundID;//音频资源ID
     private Boolean onceGame=false;
+    private Boolean onceToast=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void run() {
                 onceGame=!onceGame;
+                onceToast=true;
             }
         },3000);
     }
@@ -84,6 +87,8 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         level.setText("当前题库：" + AllCtl.currType.getString("curr", "普通"));
         countine = (Button) findViewById(R.id.countine);
         countine.setOnClickListener(this);
+        countine.setOnTouchListener(button1Listener);
+        close.setOnTouchListener(button1Listener);
     }
 
     @Override
@@ -117,13 +122,17 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
                         @Override
                         public void run() {
                             onceGame=!onceGame;
+                            onceToast=true;
                         }
                     },3000);
                     if (AllCtl.sound){
                         playSound();
                     }
                 }else {
-                    Toast.makeText(this, "3秒后才可继续哦", Toast.LENGTH_SHORT).show();
+                    if (onceToast){
+                        Toast.makeText(this, "3秒后才可继续哦", Toast.LENGTH_SHORT).show();
+                        onceToast=false;
+                    }
                 }
                 break;
         }
@@ -147,5 +156,17 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             );
         }
     }
+    private View.OnTouchListener button1Listener = new View.OnTouchListener() {
 
+        public boolean onTouch(View arg0, MotionEvent event) {
+            // TODO Auto-generated method stub
+            int iAction = event.getAction();
+            if (iAction == MotionEvent.ACTION_DOWN) {	// 按下
+                arg0.setBackgroundResource(R.drawable.button_selected);
+            } else if (iAction == MotionEvent.ACTION_UP) {	// 弹起
+                arg0.setBackgroundResource(R.drawable.button_main_bg);
+            }
+            return false;	// return false表示系统会继续处理
+        }
+    };
 }

@@ -43,7 +43,7 @@ public class PanFragment extends Fragment implements View.OnClickListener {
     private int stream;
     private ImageView animal;
     private Button changeQuestionButton;
-
+    private Boolean onceToast=true;
     public static PanFragment newInstance(String[] items) {
         PanFragment panFragment = new PanFragment();
         Bundle bundle = new Bundle();
@@ -85,6 +85,7 @@ public class PanFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void run() {
                         stopSound();
+                        onceToast=true;
                     }
                 });
                 //弹出对话框
@@ -171,14 +172,20 @@ public class PanFragment extends Fragment implements View.OnClickListener {
                 if (running) {
                     startRotate();
                 } else {
-                    Toast.makeText(getActivity(), "正在抽取...", Toast.LENGTH_SHORT).show();
+                    if (onceToast){
+                        Toast.makeText(getActivity(), "正在抽取...", Toast.LENGTH_SHORT).show();
+                        onceToast=false;
+                    }
                 }
                 break;
             case R.id.back:
                 if (running) {
                     getActivity().onBackPressed();
                 } else {
-                    Toast.makeText(getActivity(), "正在抽取...", Toast.LENGTH_SHORT).show();
+                    if (onceToast){
+                        Toast.makeText(getActivity(), "正在抽取...", Toast.LENGTH_SHORT).show();
+                        onceToast=false;
+                    }
                 }
                 break;
             case R.id.changeQuestionButton:
