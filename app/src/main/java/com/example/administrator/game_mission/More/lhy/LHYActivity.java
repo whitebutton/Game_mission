@@ -57,6 +57,7 @@ public class LHYActivity extends AppCompatActivity implements View.OnClickListen
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!oneStart) return;
                 finish();
             }
         });
