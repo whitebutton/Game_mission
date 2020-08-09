@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -169,4 +170,31 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             return false;	// return false表示系统会继续处理
         }
     };
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            final MyDialog myDialog2 = new MyDialog(this, R.style.defaultDialogStyle);
+            myDialog2.setMessage("你确定关闭当前页面吗？");
+            myDialog2.setCancel(new MyDialog.IOnCancelListener() {
+                @Override
+                public void onCancel(MyDialog Dialog) {
+                    Dialog.dismiss();
+                }
+            });
+            myDialog2.setConfirm(new MyDialog.IOnConfirmListener() {
+                @Override
+                public void onConfirm(MyDialog Dialog) {
+                    //确定后相应操作
+                    Dialog.dismiss();
+                    finish();
+                }
+            });
+            myDialog2.show();
+            return true;
+        }
+        return false;
+    }
+
 }
