@@ -40,6 +40,7 @@ public class Zwn2Activity extends AppCompatActivity implements View.OnClickListe
     private Boolean onecStart = true;
     private SoundPool soundPool;//音频通知声音播放器
     private int soundID;//音频资源ID
+    private int stream;
     private Button changeQuestionButton;
 
     @Override
@@ -139,7 +140,7 @@ public class Zwn2Activity extends AppCompatActivity implements View.OnClickListe
                                     intent.putExtra("types", 2);
                                     startActivity(intent);
                                 }
-                            }, 1000);
+                            }, 1200);
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -191,7 +192,7 @@ public class Zwn2Activity extends AppCompatActivity implements View.OnClickListe
 
     private void playSound() {
         if (AllCtl.sound) {
-            soundPool.play(
+            stream =soundPool.play(
                     soundID,
                     1f,      //左耳道音量【0~1】
                     1f,      //右耳道音量【0~1】
@@ -200,5 +201,14 @@ public class Zwn2Activity extends AppCompatActivity implements View.OnClickListe
                     1          //播放速度【1是正常，范围从0~2】
             );
         }
+    }
+    private void stopSound() {
+        soundPool.stop(stream);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopSound();
     }
 }

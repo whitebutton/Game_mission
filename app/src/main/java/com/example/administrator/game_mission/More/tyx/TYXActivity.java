@@ -294,14 +294,27 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
         }, 2000);
     }
 
-    //取消监听
+    //销毁取消监听
     @Override
     protected void onDestroy() {
         super.onDestroy();
         sensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
         sensorManager.unregisterListener(sensorEventListener);
     }
-
+    //暂停取消监听
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
+        sensorManager.unregisterListener(sensorEventListener);
+        player.stop();
+    }
+    //加载恢复监听
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initData();
+    }
 
     @Override
     public void onBackPressed() {
@@ -336,4 +349,5 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
             return false;	// return false表示系统会继续处理
         }
     };
+
 }
