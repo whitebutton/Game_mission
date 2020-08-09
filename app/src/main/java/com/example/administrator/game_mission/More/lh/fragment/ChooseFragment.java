@@ -16,11 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Adapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -117,10 +119,16 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                     getActivity().finish();
                 }
                 if (lv1.getAdapter() == mLvAdapter2) {
+                    if ( changesItemToSave(mLvAdapter2.changes,"存在未保存的挑战")){
+                        return;
+                    }
                     closeKeybord(nowEdit, getActivity());
                     lv1.setAdapter(mLvAdapter);
                 }
                 if (lv1.getAdapter() == mLvAdapter3) {
+                    if (changesItemToSave(mLvAdapter3.changes,"存在未保存的挑战")){
+                        return;
+                    }
                     closeKeybord(nowEdit, getActivity());
                     lv1.setAdapter(mLvAdapter);
                     panname.setText("");
@@ -128,6 +136,9 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                 //删除指定转盘
             case R.id.btn1:
                 if (lv1.getAdapter() == mLvAdapter2) {
+                    if ( changesItemToSave(mLvAdapter2.changes,"存在未保存的挑战")){
+                        return;
+                    }
                     if (list.size() == 1) {
                         Toast.makeText(getActivity(), "最后一个转盘不可删除", Toast.LENGTH_SHORT).show();
                     } else {
@@ -141,11 +152,8 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
             case R.id.btn2:
                 //2开始
                 if (lv1.getAdapter() == mLvAdapter2) {
-                    for (int j = 0; j < mLvAdapter2.content.length; j++) {
-                        if (mLvAdapter2.changes[j]) {
-                            Toast.makeText(getActivity(), "存在未保存的挑战", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
+                    if (changesItemToSave(mLvAdapter2.changes,"存在未保存的挑战")){
+                        return;
                     }
                     saveMessage();
                     PanFragment panFragment = PanFragment.newInstance(list.get(mLvAdapter2.panNum).getItems());
@@ -161,11 +169,8 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                                 return;
                             }
                         }
-                        for (int j = 0; j < mLvAdapter3.content.length; j++) {
-                            if (mLvAdapter3.changes[j]) {
-                                Toast.makeText(getActivity(), "存在未保存的挑战", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
+                        if (changesItemToSave(mLvAdapter3.changes,"存在未保存的挑战")){
+                            return;
                         }
                         list.add(new PanBean(panname.getText().toString(), mLvAdapter3.content));
                         panname.setText("");
@@ -293,11 +298,8 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                 @Override
                 public void onClick(View view) {
                     if (finalHolder.btn.getText().toString().equals("改")) {
-                        for (int j = 0; j < mLvAdapter2.content.length; j++) {
-                            if (mLvAdapter2.changes[j]) {
-                                Toast.makeText(getActivity(), "请先保存先前要修改的挑战内容", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
+                        if (changesItemToSave(mLvAdapter2.changes,"请先保存先前要修改的挑战内容")){
+                            return;
                         }
                         finalHolder.tv2.setVisibility(View.INVISIBLE);
                         finalHolder.ed1.setVisibility(View.VISIBLE);
@@ -325,7 +327,6 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                 }
             });
             setListViewRequestFocus(finalHolder.rootView, finalHolder.ed1, finalHolder.btn);
-
             return view;
         }
 
@@ -379,11 +380,8 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                 @Override
                 public void onClick(View view) {
                     if (finalHolder.btn.getText().toString().equals("改")) {
-                        for (int j = 0; j < mLvAdapter3.content.length; j++) {
-                            if (mLvAdapter3.changes[j]) {
-                                Toast.makeText(getActivity(), "请先保存先前要修改的挑战内容", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
+                        if (changesItemToSave(mLvAdapter3.changes,"请先保存先前要修改的挑战内容")){
+                            return;
                         }
                         finalHolder.tv2.setVisibility(View.INVISIBLE);
                         finalHolder.ed1.setVisibility(View.VISIBLE);
@@ -408,7 +406,6 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
                 }
             });
             setListViewRequestFocus(finalHolder.rootView, finalHolder.ed1, finalHolder.btn);
-
             return view;
         }
     }
@@ -427,6 +424,16 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
             this.btn = (Button) rootView.findViewById(R.id.btn);
         }
     }
+    //判断是否有未保存的挑战
+    private boolean  changesItemToSave(boolean [] changes,String s){
+        for (int j = 0; j <changes.length; j++) {
+            if (changes[j]) {
+                Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        }
+        return  false;
+    }
     //listview聚焦edit
     private void setListViewRequestFocus(View view, final EditText editText, final Button button) {
         view.setOnClickListener(new View.OnClickListener() {
@@ -438,7 +445,6 @@ public class ChooseFragment extends Fragment implements View.OnClickListener {
             }
         });
     }
-
     //弹出软键盘
     public void showSoftInputFromWindow(Activity activity, EditText mEditText) {
         nowEdit = mEditText;
