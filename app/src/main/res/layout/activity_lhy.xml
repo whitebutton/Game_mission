@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#c69aec"
+    android:background="#c9a0ec"
     tools:context=".More.lhy.LHYActivity">
 
     <LinearLayout

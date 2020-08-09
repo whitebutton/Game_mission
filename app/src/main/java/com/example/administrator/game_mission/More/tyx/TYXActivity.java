@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -80,6 +81,7 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
                 }
             }
         });
+        bt1.setOnTouchListener(button1Listener);
         back = (ImageView) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -320,4 +322,18 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
                 break;
         }
     }
+
+    private View.OnTouchListener button1Listener = new View.OnTouchListener() {
+
+        public boolean onTouch(View arg0, MotionEvent event) {
+            // TODO Auto-generated method stub
+            int iAction = event.getAction();
+            if (iAction == MotionEvent.ACTION_DOWN) {	// 按下
+                arg0.setBackgroundResource(R.drawable.button_tyx_bg2);
+            } else if (iAction == MotionEvent.ACTION_UP) {	// 弹起
+                arg0.setBackgroundResource(R.drawable.button_tyx_bg);
+            }
+            return false;	// return false表示系统会继续处理
+        }
+    };
 }
