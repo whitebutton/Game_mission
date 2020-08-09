@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="内容一："
+            android:gravity="center"
             android:textColor="#000"
             android:textSize="25dp"
             android:textStyle="bold" />
@@ -27,7 +28,9 @@
             android:layout_weight="1"
             android:imeOptions="actionDone"
             android:inputType="text"
+            android:gravity="center"
             android:text="cs"
+            android:maxLength="20"
             android:textSize="20dp" />
     </LinearLayout>
 
@@ -43,14 +46,17 @@
             android:layout_weight="1"
             android:text="内容二："
             android:textColor="#000"
+            android:gravity="center"
             android:textSize="25dp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/ed2"
             android:layout_width="0dp"
+            android:maxLength="20"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:text="cs"
@@ -69,6 +75,7 @@
             android:layout_weight="1"
             android:text="内容三："
             android:textColor="#000"
+            android:gravity="center"
             android:textSize="25dp"
             android:textStyle="bold" />
 
@@ -76,8 +83,10 @@
             android:id="@+id/ed3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:maxLength="20"
             android:layout_weight="1"
             android:imeOptions="actionDone"
+            android:gravity="center"
             android:inputType="text"
             android:text="cs"
             android:textSize="20dp" />
@@ -94,6 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="内容四："
+            android:gravity="center"
             android:textColor="#000"
             android:textSize="25dp"
             android:textStyle="bold" />
@@ -102,9 +112,11 @@
             android:id="@+id/ed4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:maxLength="20"
             android:layout_weight="1"
             android:imeOptions="actionDone"
             android:inputType="text"
+            android:gravity="center"
             android:text="cs"
             android:textSize="20dp" />
     </LinearLayout>
@@ -120,6 +132,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="内容五："
+            android:gravity="center"
             android:textColor="#000"
             android:textSize="25dp"
             android:textStyle="bold" />
@@ -127,9 +140,11 @@
         <EditText
             android:id="@+id/ed5"
             android:layout_width="0dp"
+            android:maxLength="20"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:imeOptions="actionDone"
+            android:gravity="center"
             android:inputType="text"
             android:text="cs"
             android:textSize="20dp" />
@@ -147,6 +162,7 @@
             android:layout_weight="1"
             android:text="内容六："
             android:textColor="#000"
+            android:gravity="center"
             android:textSize="25dp"
             android:textStyle="bold" />
 
@@ -155,7 +171,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
             android:imeOptions="actionDone"
+            android:maxLength="20"
             android:inputType="text"
             android:text="cs"
             android:textSize="20dp" />
