@@ -96,6 +96,7 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onClick(View view) {
                 if (!onceStart) return;
+                onceStart=false;
                 AlertDialog.Builder builder = new AlertDialog.Builder(TYXActivity.this, R.style.defaultDialogStyle);
                 View view1 = View.inflate(TYXActivity.this, R.layout.dialog_touzi, null);
                 builder.setView(view1);
@@ -119,6 +120,7 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
                     @Override
                     public void onClick(View view) {
                         setData();
+                        onceStart=true;
                         dialog.dismiss();
                     }
                 });
@@ -147,6 +149,7 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
                             }
                             if (editor.commit()){
                                 Toast.makeText(TYXActivity.this, "保存成功", Toast.LENGTH_SHORT).show();
+                                onceStart=true;
                                 dialog.dismiss();
                             } else {
                                 Toast.makeText(TYXActivity.this, "保存失败", Toast.LENGTH_SHORT).show();
