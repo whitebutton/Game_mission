@@ -102,6 +102,7 @@ public class TYXActivity extends AppCompatActivity implements View.OnClickListen
                 builder.setView(view1);
                 builder.create();
                 final AlertDialog dialog = builder.show();
+                dialog.setCanceledOnTouchOutside(false);
                 final EditText ed1 = view1.findViewById(R.id.ed1);
                 final EditText ed2 = view1.findViewById(R.id.ed2);
                 final EditText ed3 = view1.findViewById(R.id.ed3);
